@@ -1,0 +1,20 @@
+START "" program
+is the Unix equivalent of
+program &
+
+Connect to putty:
+=================
+@ECHO OFF
+set PUTTY="C:\Program Files (x86)\putty-0.65\PUTTY.EXE"
+set count=%1
+if [%count%]==[] set count=6
+for /L %%n in (1,1,%count%) do (
+    echo %%n
+    start "" %PUTTY% "username@hostnameFQDN" -pw password
+)
+
+
+Close all putty:
+================
+set loc=PUTTY
+for /f "tokens=2 delims= " %%A in ('tasklist /v ^| findstr /i "%loc%"') do (taskkill /PID %%A)
