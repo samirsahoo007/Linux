@@ -1,0 +1,66 @@
+html part:
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+        <title>test</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>
+
+            $(function()
+            {
+                $('#clickme').click(function(){
+                    alert('Im going to start processing');
+
+                    $.ajax({
+                        url: "/cgi-bin/post.py",
+                        type: "post",
+                        datatype:"json",
+                        data: {'key':'value','key2':'value2'},
+                        success: function(response){
+                            alert(response.message);
+                            alert(response.keys);
+                        }
+                    });
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+        <button id="clickme"> click me </button>
+    </body>
+
+</html>
+
+Python part:
+#!/usr/bin/python
+import sys
+import json
+import cgi
+
+fs = cgi.FieldStorage()
+
+sys.stdout.write("Content-Type: application/json")
+
+sys.stdout.write("\n")
+sys.stdout.write("\n")
+
+
+result = {}
+result['success'] = True
+result['message'] = "The command Completed Successfully"
+result['keys'] = ",".join(fs.keys())
+
+d = {}
+for k in fs.keys():
+    d[k] = fs.getvalue(k)
+
+result['data'] = d
+
+sys.stdout.write(json.dumps(result,indent=1))
+sys.stdout.write("\n")
+
+sys.stdout.close()
+
