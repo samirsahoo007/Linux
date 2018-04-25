@@ -1,3 +1,646 @@
+How to kill all running celery processes found?
+kill $(ps aux | grep -v 'grep -i celery' | grep -i celery | awk '{print $2}')
+
+zip -r filename.zip filesdir
+
+Putty session locked up from CTRL+S? How to unlock Putty session?
+If you are using putty terminal, putty session locks up and becomes unresponsive after you pressed “CTRL + S”
+To restore current putty session, press “CTRL + Q”
+
+CTSL+S => XOFF
+CTRL+Q => XON
+
+ss - Another utility to investigate sockets
+ss is used to dump socket statistics. It allows showing information similar to netstat.  It can display more TCP and state information than other tools.
+sudo (sometimes considered as short for Super-user do)
+
+Oracle specific commands:
+To connect Oracle DB in linux:
+sqlplus username/password@hostname:portnumber/Servicename
+sqlplus user0001/password0001@hostname01.us.companyDomain:20001/DBName
+
+e.g. in our E2 source:
+      'ENGINE': 'django.db.backends.oracle',
+      'NAME': 'DBName',
+      'USER': 'user0001',
+      'PASSWORD': 'password0001',
+      'HOST': 'hostname01.us.companyDomain',
+      'PORT': '20001'
+
+Queries:
+select table_name from all_tables
+SELECT view_name FROM all_views
+select table_name, owner, tablespace_name from all_tables
+select * from all_tables
+SELECT table_name FROM user_tables
+
+Try the below data dictionary views.
+tabs
+dba_tables
+all_tables
+user_tables
+Select * from dba_tables; -- need to have select catalog role
+Select * from user_tables;-- to see tables of your schema
+Select * from all_tables; -- tables inside your schma and tables of orher schema which you possess select grants on
+
+ldd - print shared library dependencies
+
+
+UDP: 
+Anything where you don't care too much if you get all data always
+UDP is a connectionless protocol - it simply has a destination and nodes simply pass it along if it comes as best as they can. So packets arriving out of order, along various routes etc are common. So Instant messengers and similar software developers think UDP an ideal solution.
+In real life if you want to throw data in the net, without worrying about time taken to reach, order of reaching use UDP.
+Tunneling/VPN (lost packets are ok - the tunneled protocol takes care of it)
+Streaming media applications such as movies (lost frames are ok)
+Online multiplayer games or Games that don't care if you get every update
+Local broadcast mechanisms (same application running on different machines "discovering" each other)
+Domain Name System (DNS)
+Voice over IP (VoIP)
+Trivial File Transfer Protocol (TFTP)
+TCP + UDP = SMTP (example: mobile, telephone)
+
+* **Reason: ***suppose if some packet (frame/sequence) is missing we can understand the content. Because video is collection of frames. For 1 second video there should be 25 frames (image).Even though we can understand some frames are missing due to our imagination skills. That’s why UDP is used for video streaming.
+
+TCP: 
+Almost anything where you have to get all transmitted data
+TCP is a connection oriented protocol, it establishes a path, or a virtual connection all the way through switches routers proxies etc. and then starts any communication. Various mechanisms like routing djikstras shortest path algorithm exist to establish the virtual end to end connection. So it finds itself used while browsing HTML and other pages, making payments and web applications in general.
+If you want a solid path before you start throwing packets, and want same order and latency for your data packets use TCP - I will use UDP for Torrents and TCP for PayPal!
+www or World Wide Web(HTTP)
+SSH, FTP, telnet
+Email(SMTP, sending mail / IMAP/POP, receiving mail)
+
+UDP is mailing a letter at the post office.
+TCP is mailing a letter with a return receipt at the post office, except that the post master will organize the letters in-order-of mailing and only deliver them in-order.
+
+The classic standpoint is to consider TCP as safe and UDP as unreliable.
+But when TCP-IP protocols are used in safety critical applications, TCP is not recommended because it can stop on error for multiple reasons. Whereas UDP lets the application software deal with errors, retransmission timers, etc.
+
+Moreover, TCP has more processing overhead than UDP.
+Currently, UDP is used in aircraft controls and flight instruments, in the ARINC 664 standard also named AFDX (Avionics Full-Duplex Switched Ethernet). In ARINC 664, TCP is optional but UDP is used with the RTOS (real time operating systems) designed for the ARINC 653 standard (high reliability control software in civil aircrafts).
+
+TCP
+I will not send data anymore until i get an acknowledgment.
+this process is slow
+It is used for security purpose
+
+UDP
+Here i have no headache with acknowledgment.
+this process is faster but here data can be lost .
+example : video streaming , online games etc
+
+Understanding Active Directory services(LDAP):
+·	CN = Common Name
+·	OU = Organizational Unit
+·	DC = Domain Component
+These are all parts of the X.500 Directory Specification, which defines nodes in a LDAP directory.
+You can also read up on LDAP data Interchange Format (LDIF), which is an alternate format.
+You read it from right to left, the right-most component is the root of the tree, and the left most component is the node (or leaf) you want to reach.
+Each = pair is a search criteria. 
+With your example query
+("CN=Dev-India,OU=Distribution Groups,DC=gp,DC=gl,DC=google,DC=com");
+In effect the query is:
+From the com Domain Component, find the google Domain Component, and then inside it the gl Domain Component and then inside it the gp Domain Component.
+In the gp Domain Component, find the Organizational Unit called Distribution Groups and then find the the object that has a common name of Dev-India.
+It is a DN (Distinguished Name) (a series of comma-separated key/value pairs used to identify entries uniquely in the directory hierarchy). The DN is actually the entry's fully qualified name.
+Here you can see an example where I added some more possible entries.
+The actual path is represented using green.
+ 
+The following paths represent DNs (and their value depends on what you want to get after the query is run):
+·	"DC=gp,DC=gl,DC=google,DC=com"
+·	"OU=Distribution Groups,DC=gp,DC=gl,DC=google,DC=com"
+·	"OU=People,DC=gp,DC=gl,DC=google,DC=com"
+·	"OU=Groups,DC=gp,DC=gl,DC=google,DC=com"
+·	"CN=QA-USA,OU=Distribution Groups,DC=gp,DC=gl,DC=google,DC=com"
+·	"CN=Dev-India,OU=Distribution Groups,DC=gp,DC=gl,DC=google,DC=com"
+"CN=Ted Owen,OU=People,DC=gp,DC=gl,DC=google,DC=com"
+LDAP Namespace Structure 
+A directory service has two major features. First, it distributes its information base among many different servers. Second, users can access directory information by querying any of those servers. Making this work requires defining a namespace in which each object's location can be quickly determined. 
+Common Names
+As we saw in the last section, information in an LDAP database comes in the form of objects. Objects have attributes that describe them. For example, the User object for Tom Jones would have attributes such as Tom's logon name, his password, his phone number, his email address, his department, and so forth. 
+When an LDAP client needs to locate information about an object, it submits a query that contains the object's distinguished name (DN) and the attributes the client wants to see. A search for information about Tom Jones could be phrased in a couple of ways: 
+·	You could search for attributes in Tom's User object. “Give me the Department attribute for cn=Tom Jones,cn=Users,dc=Company,dc=com.” 
+Distinguished Names
+A name that includes an object's entire path to the root of the LDAP namespace is called its distinguished name, or DN. An example DN for a user named CSantana whose object is stored in the cn=Users container in a domain named Company.com would be cn=CSantana,cn=Users,dc=Company,dc=com. 
+Relative Distinguished Names
+An object name without a path, or a partial path, is called a relative distinguished name, or RDN. The common name cn=CSantana is an example of an RDN. So is cn=CSantana,cn=Users. The RDN serves the same purpose as a path fragment in a filename. It is a convenient navigational shortcut. 
+Two objects can have the same RDN, but LDAP has a rule that no two objects can have the same DN. This makes sense if you think of the object-oriented nature of the database. Two objects with the same DN would try to occupy the same row in the database table. C'est impossible, as we say in southern New Mexico. 
+Case Sensitivity of LDAP Names 
+Distinguished names in Active Directory are not case sensitive. In most instances, the case you specify when you enter a value is retained in the object's attribute. This is similar to the way Windows treats filenames. Feel free to mix cases based on your corporate standards or personal aesthetic. 
+Typeless Names and Delimiters
+If you write scripts and you need to allow for periods in object names, precede the period with a backslash. This tells the parser that the period is a special character, not a delimiter. For example, if your user names look like tom.collins, a typeless name in a script would look like this: tom\.collins.Users.Company.com. The same is true for user names that have embedded commas and periods, such as Winston H. Borntothepurple, Jr. An ADSI query for this name would look like this: winston h\. borntothepurple\, jr\. 
+Naming Contexts
+As the number of objects in a DIT grows, the database may get too large to store efficiently on one DSA. Also, an organization might want to use bandwidth more effectively by using a DSA in New York to store information about users in North America and another DSA in Amsterdam to store information about users in Europe. 
+Naming Contexts and Partitions
+X.501, “Information Technology—Open Systems Interconnection—The Directory: Models,” defines the term naming context as, “A subtree of entries held in a single master DSA.” It goes on to describe the process of dividing a tree into multiple naming contexts as partitioning.
+Novell chose to adopt the term partition to define separate pieces of the directory database. In their seminal book, Understanding and Deploying LDAP Directory Services, Tim Howe, Mark Smith, and Gordon Good use the term partition in favor of naming context, although they describe both as meaning the same thing. Microsoft uses the two terms interchangeably. 
+The tools that come with the Windows Server 2003 CD and in the Resource Kit favor the term naming context. That is the term I use throughout this book. 
+Here is where the distributed nature of an LDAP database comes into play. The Directory Information Base can be separated into parts called naming contexts, or NCs. In Active Directory, each domain represents a separate naming context. Domain controllers in the same domain each have a read/write replica of that Domain naming context. Configuration and Schema objects are stored in their own naming contexts, as are DNS Record objects when using Active Directory Integrated DNS zones. 
+When a client submits a query for information about a particular object, the system must determine which DSA hosts the naming context that contains that particular object. It does this using the object's distinguished name and knowledge about the directory topology. 
+If a DSA cannot respond to a query using information in the naming contexts it hosts, it sends the client a referral to a DSA hosting the next higher or lower naming context in the tree (depending on the distinguished name of the object in the search). The client then submits the request to a DSA hosting the naming context in the referral. This DSA either responds with the information being requested or a referral to another DSA. This is called walking the tree.
+DSAs that host copies of the same naming context must replicate changes to each other. It's important to keep this in mind as you work with Active Directory servers. If you have separate domains, then clients in one domain must walk the tree to get access to Active Directory objects in another domain. If the domain controllers for the domains are in different locations in the WAN, this can slow performance. Many of the architectural decisions you'll make as you design your system focus on the location, accessibility, and reliability of naming contexts. 
+LDAP Searches 
+From a client's perspective, LDAP operates like a well-run department store. In a department store, you can sidle up to the fragrance counter and ask, “How much is the Chanel No. 5?” and be sure of getting an immediate reply, especially if you already have your credit card in hand. The same is true of LDAP. When a search request is submitted to a DSA that hosts a copy of the naming context containing the objects involved in the search, the DSA can answer the request immediately. 
+But in a department store, what if you ask the fragrance associate, “Where can I find a size 16 chambray shirt that looks like a Tommy Hilfiger design but doesn't cost so darn much?” The associate probably doesn't know, but gives you directions to the Menswear department. You make your way there and ask your question to an associate standing near the slacks. The associate may not know the answer, but gives you directions to the Bargain Menswear department in the basement behind last year's Christmas decorations. You proceed to that area and ask an associate your question again. This time you're either handed a shirt or given an excuse why one isn't available. 
+LDAP uses a similar system of referrals to point clients at the DSA that hosts the naming context containing the requested information. These referrals virtually guarantee the success of any lookup so long as the object exists inside the scope of the information base. 
+The key point to remember is that LDAP referrals put the burden of searching on the clients. This contrasts to X.500, where all the messy search work is handed over to the DSAs. LDAP is Wal-Mart to the Nordstroms of X.500. 
+RootDSE
+When LDAP clients need information from a DSA, they must first bind to the directory service. This authenticates the client and establishes a session for the connection. The client then submits queries for objects and attributes within the directory. This means the client needs to know the security requirements of the DSA along with the structure of the directory service it hosts. 
+DSAs “advertise” this information by constructing a special object called RootDSE. The RootDSE object acts like a signpost at a rural intersection. It points the way to various important features in the directory service and gives useful information about the service. LDAP clients use this information to select an authentication mechanism and configure their searches. 
+Each DSA constructs its own copy of RootDSE. The information is not replicated between DSAs. RootDSE is like the eye above the pyramid on the back of a dollar bill. It sits apart from the structure but knows all about it. You'll be seeing more about RootDSE later in this book in topics that cover scripting. Querying RootDSE for information about Active Directory rather than hard-coding that information into your scripts is a convenient way to make your scripts portable. 
+LDAP Namespace Structure Summary 
+Here are the highlights of what you need to remember about the LDAP namespace structure to help you design and administer Active Directory: 
+·	An object's full path in the LDAP namespace is called its distinguished name. All DNs must be unique. 
+·	The Directory Information Tree, or DIT, is a distributed LDAP database that can be hosted by more than one server. 
+·	The DIT is divided into separate units called naming contexts. A domain controller can host more than one naming context.
+·	Active Directory uses separate naming contexts to store information about domains in the same DIT.
+·	When LDAP clients search for an object, LDAP servers refer the clients to servers that host the naming context containing that object. They do this using shared knowledge about the system topology. 
+·	Each DSA creates a RootDSE object that describes the content, controls, and security requirements of the directory service. Clients use this information to select an authentication method and to help formulate their search requests. 
+Ref: http://www.zytrax.com/books/ldap/apd/ for indexes
+
+Setup ldap server and client (Ref http://www.learnitguide.net/2016/01/configure-openldap-server-on-rhel7.html )
+OpenLDAP Server Configuration on RHEL6
+LDAP, or Lightweight Directory Access Protocol, is a protocol for managing related information from a centralized location through the use of a file and directory hierarchy. It functions in a similar way to a relational database in certain ways, and can be used to organize and store any kind of information. LDAP is commonly used for centralized authentication.
+
+Our Lab Setup
+ 
+Description	Server Information	Client Information	   
+Operating System	RHEL6 - 64 Bit	RHEL6 - 64 Bit	   
+Host Name	host0001.hk.companyDomain	host0002.hk.companyDomain	   
+IP Address	abc.de.fgh.jkl	mno.pq.rst.uv	 
+
+Prerequisites:
+1. Make sure both server host0001.hk.companyDomain (abc.de.fgh.jkl) and client host0002.hk.companyDomain (mno.pq.rst.uv) are accessible.
+2. Make an entry of each host in /etc/hosts for name resolution or configure it in DNS to resolve the IP, if you use server name instead of IP address. Read also How to Configure DNS Server on RHEL7 But we use IP Address for reference.
+Server end configuration
+Login into the server host0001.hk.companyDomain (abc.de.fgh.jkl) and do the following steps to configure OpenLDAP Server.
+
+1. Install the required LDAP Packages "Openldap"
+Install the appropriate LDAP packages "openldap" and "migrationtools" using yum to avoid dependencies issue. if yum is not configured, please refer the link Yum Configuration on Linux
+[root@host0001 ~]# yum -y install openldap* migrationtools
+2. Create a LDAP root passwd for administration purpose.
+[root@host0001 ~]# slappasswd
+New password:
+Re-enter new password:
+{SSHA}dsfkdsfjdsflkdsfkdsfdskfkdfd
+Copy the encrypted the passwd from the above output "{SSHA}ffkdsfdsfdfkdsfldsfkdfdkfdsf". Replace with your password and keep it aside.
+3. Edit the OpenLDAP Server Configuration
+OpenLDAP server Configuration files are located in /etc/openldap/slapd.d/.
+Go to cn=config directory under /etc/openldap/slapd.d/ and edit the "olcDatabase={2}hdb.ldif" for changing the configuration.
+[root@host0001 ~]# cd /etc/openldap/slapd.d/cn=config
+[root@host0001 cn=config]# vi olcDatabase={2}hdb.ldif
+Change the variables of "olcSuffix" and "olcRootDN" according to your domain as below.
+olcSuffix: dc=hk,dc=companyDomain
+olcRootDN: cn=Manager,dc=hk,dc=companyDomain
+Add the below three lines additionally in the same configuration file.
+olcRootPW: {SSHA}bHSiwuPJEypHS6zHSE2Uy7M69sQjmkPL
+olcTLSCertificateFile: /etc/pki/tls/certs/ host0001.pem
+olcTLSCertificateKeyFile: /etc/pki/tls/certs/ host0001.pem
+Replace the "olcRootPW" value with your copied passwd. Now Save and exit the configuration file.
+
+The suffix line names the domain for which the LDAP server provides information and should be changed to your domain name. The rootdn entry is the Distinguished Name (DN) for a user who is unrestricted by access controls or administrative limit parameters set for operations on the LDAP directory. The rootdn user can be thought of as the root user for the LDAP directory. In the configuration file, change the rootdn line from its default value as above.
+
+4. Provide the Monitor privileges
+Open the file /etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif and go to the line start with olcAccess. Replace the value "dc=my-domain,dc=com" to "dc=hk,dc=companyDomain" as below.
+[root@host0001 cn=config]# vi olcDatabase={1}monitor.ldif
+olcAccess: {0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external, cn=auth" read by dn.base="cn=Manager,dc=hk,dc=companyDomain" read by * none
+Note: If no olcAccess directives are specified, the default access control policy, to * by * read, allows all users (both authenticated and anonymous) read access.
+Note: Access controls defined in the frontend are appended to all other databases' controls.
+
+Verify the configuration
+[root@host0001 cn=config]# slaptest -u
+56abba86 ldif_read_file: checksum error on "/etc/openldap/slapd.d/cn=config/olcDatabase={1}monitor.ldif"
+56abba86 ldif_read_file: checksum error on "/etc/openldap/slapd.d/cn=config/olcDatabase={2}hdb.ldif"
+config file testing succeeded
+Ignore the Checksum errors as of now.
+5. Enable and Start the SLAPD service
+[root@host0001 cn=config]# /etc/init.d/slapd start
+[root@host0001 cn=config]# chkconfig slapd on
+[root@host0001 cn=config]# netstat -lt | grep ldap
+tcp        0      0 0.0.0.0:ldap            0.0.0.0:*               LISTEN
+tcp6       0      0 [::]:ldap               [::]:*                  LISTEN
+
+6. Configure the LDAP Database
+Copy the Sample Database Configuration file, change the file permissions as below.
+[root@host0001 cn=config]# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+[root@host0001 cn=config]# chown -R ldap:ldap /var/lib/ldap/
+Add the following LDAP Schemas
+[root@host0001 cn=config]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif
+[root@host0001 cn=config]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif
+[root@host0001 cn=config]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif
+
+7. Create the self-signed certificate
+In Step 3, We have specified our certificate locations. But we have not created yet, Lets create the self signed certificate,
+[root@host0001 cn=config]# openssl req -new -x509 -nodes -out /etc/pki/tls/certs/ host0001.pem -keyout /etc/pki/tls/certs/ host0001.pem -days 365
+Provide your company details to generate the certificate as below.
+Country Name (2 letter code) [XX]:IN
+State or Province Name (full name) []:Maharashtra
+Locality Name (eg, city) [Default City]:Maharashtra
+Organization Name (eg, company) [Default Company Ltd]:hk
+Organizational Unit Name (eg, section) []:companyDomain
+Common Name (eg, your name or your server's hostname) []:host0001.hk.companyDomain
+Email Address []:root@ host0001.hk.companyDomain
+Verify the created certificates under the location /etc/pki/tls/certs/
+[root@host0001 cn=config]# ll /etc/pki/tls/certs/*.pem
+-rw-r--r--. 1 root root 1704 Jan  8 14:52 /etc/pki/tls/certs/ host0001.pem
+-rw-r--r--. 1 root root 1497 Jan  8 14:52 /etc/pki/tls/certs/ host0001.pem
+8. Create base objects in OpenLDAP
+To create base objects in OpenLDAP, we need migration tools to be installed. We have already installed the migrationtools in the step 1 itself. So You will see lot of files and scripts under /usr/share/migrationtools/.
+
+We need to change some predefined values in the file "migrate_common.ph" according to our domain name, for that do the following:
+[root@host0001 cn=config]# cd /usr/share/migrationtools/
+[root@host0001 migrationtools]# vi migrate_common.ph
+Go to Line Number 71 and change your domain name
+$DEFAULT_MAIL_DOMAIN = "hk.companyDomain";
+Go to line number 74 and change your base name
+$DEFAULT_BASE = "dc=hk,dc=companyDomain";
+Go to line number 90 and change your EXTENDED_SCHEMA from "0" to "1"
+$EXTENDED_SCHEMA = 1;
+Finally Save and Exit the file.
+9. Generate a base.ldif file for your Domain
+[root@host0001 migrationtools]# touch /root/base.ldif
+Copy the below lines and paste inside the file /root/base.ldif.
+dn: dc=hk,dc=companyDomain
+objectClass: top
+objectClass: dcObject
+objectclass: organization
+o: hk companyDomain
+dc: hk
+
+dn: cn=Manager,dc=hk,dc=companyDomain
+objectClass: organizationalRole
+cn: Manager
+description: Directory Manager
+
+dn: ou=People,dc=hk,dc=companyDomain
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Group,dc=hk,dc=companyDomain
+objectClass: organizationalUnit
+ou: Group
+Replace with your domain name instead of hk.companyDomain, Save and exit the file.
+10. Create a Local Users
+Let’s create some local users and groups, then we will migrate to LDAP. For testing purpose, I create three users as below.
+[root@host0001 migrationtools} # useradd ldapuser1
+[root@host0001 migrationtools} # useradd ldapuser2
+[root@host0001 migrationtools] # echo "ldapuser1" | passwd --stdin ldapuser1
+[root@host0001 migrationtools] # echo "ldapuser2" | passwd --stdin ldapuser2
+Filter out these user from /etc/passwd to another file:
+[root@host0001 migrationtools]# grep ":10[0-9][0-9]" /etc/passwd > /root/passwd
+If that doesn’t copy any specific user to /root/passwd then just open /etc/passwd and copy the specific line with the username to the /root/passwd file.
+e.g. samir:x:0:0::/home/samir:/bin/bash
+
+Filter out user group from /etc/group to another file:
+[root@host0001 migrationtools]# grep ":10[0-9][0-9]" /etc/group > /root/group
+Similary if that doesn’t copy any specific group to /root/group then just open /etc/group and copy the specific line with the groupname to the /root/group file.
+e.g. root:x:0:samir
+Now Convert the Individual Users file to LDAP Data Interchange Format (LDIF)
+Generate a ldif file for users
+[root@host0001 migrationtools]# ./migrate_passwd.pl /root/passwd /root/users.ldif
+Generate a ldif file for groups
+[root@host0001 migrationtools]# ./migrate_group.pl /root/group /root/groups.ldif
+11. Import Users in to the LDAP Database.
+Lets update these ldif file to LDAP Database. 
+[root@host0001 migrationtools]# ldapadd -x -W -D "cn=Manager,dc=hk,dc=companyDomain" -f /root/base.ldif
+Password: root123
+[root@host0001 migrationtools]# ldapadd -x -W -D "cn=Manager,dc=hk,dc=companyDomain" -f /root/users.ldif
+Password: root123
+[root@host0001 migrationtools]# ldapadd -x -W -D "cn=Manager,dc=hk,dc=companyDomain" -f /root/groups.ldif
+Password: root123
+Note1:
+Please note that while adding new users you may get the following error.
+[root@host0001 migrationtools]# ldapadd -x -W -D "cn=Manager,dc=hk,dc=companyDomain" -f /root/users.ldif
+Enter LDAP Password:
+adding new entry "uid=cassuser,ou=People,dc=hk,dc=companyDomain"
+ldap_add: Already exists (68)
+[root@host0001 migrationtools]# echo $?
+68
+
+Same for groups.ldif. If you check the error code, you’ll find it as 68. This is because, as the user/group in the top of the list in users.ldif or groups.ldif has already been added. When you try to add the same again, it throws error and exits.
+To solve the above issue, just move the new user/group appended to the list in users.ldif/groups.ldif, to the top of list. And run the ldapadd command again. This will add the new user/group to the list.
+The other way could be, delete all the users/groups by ldapdelete or any relevant command and run the above ldapadd commands.
+
+NOTE: It will ask for a password of "Manager", you have to type the password which you generated in encrypted format or else you can provide the admin user’s direct password(i.e. root123 in this case) i.e. encrypted password generated at the time of or password input at the time of command slappasswd
+12. Test the configuration.
+To test the configuration, search for the user "ldapuser1" in LDAP as below.
+[root@host0001 migrationtools]# ldapsearch -x cn=ldapuser1 -b dc=hk,dc=companyDomain
+It prints all the user information:
+[root@host0001 migrationtools]# ldapsearch -x -b 'dc=hk,dc=companyDomain '(objectclass=*)'
+13. Stop Firewalld to allow the connection.
+[root@host0001 migrationtools]# /etc/init.d/iptables stop
+[root@host0001 migrationtools]# /etc/init.d/ip6tables stop
+LDAP Configuration is done, but we need to share the LDAP Users Home Directories via NFS. So Users who logged in the client servers will also be able to save their data remotely on LDAP Server. If not they will get an error as "Home Directory not found". If you wish to export the Home directory using autofs instead of making an entry in fstab file, please refer the link Mounting the NFS Filesystem using autofs. Here we use simple fstab entry for testing purpose also watch this demo on youtube, how to configure Linux Clients for LDAP Authentication to OpenLDAP Server.
+14. NFS Configuration to export the Home Directory.
+Edit the file /etc/exports and add an entry as below to export the home directory. 
+[root@host0001 ~]# vi /etc/exports
+/home *(rw,sync)
+Save and Exit the file.
+Enable and restart rpcbind and nfs service.
+[root@host0001 ~]# yum -y install rpcbind nfs-utils
+[root@host0001 ~]# /etc/init.d/rpcbind start
+[root@host0001 ~]# /etc/init.d/nfs start
+[root@host0001 ~]# chkconfig rpcbind on
+[root@host0001 ~]# chkconfig nfs on
+Test the NFS Configuration
+[root@host0001 u44035615]# showmount -e
+Export list for host0001.hk.companyDomain:
+/home * 
+
+Test server from server:
+Note: ldapuser1 and ldapuser2 are two ldap users
+
+Search all the users:
+ldapsearch -x -b 'dc=hk,dc=companyDomain' '(objectclass=*)'
+ldapsearch -x cn=Manager -b dc=hk,dc=companyDomain
+
+Search a specific user:
+ldapsearch -x cn=ldapuser1 -b dc=hk,dc=companyDomain
+ldapsearch -x cn=samir -b dc=hk,dc=companyDomain
+
+Test server from client(logged in as non-root user):
+ldapsearch -h hostname -x -b "dc=example,dc=com" 'uid=user'
+ldapsearch -x -h hostname  -s sub -b 'dc=hk,dc=companyDomain' "uid=ldapuser1"
+e.g.
+ldapsearch -h host0001.hk.companyDomain -x -b "dc=hk,dc=companyDomain" 'uid=*'
+ldapsearch -h host0001.hk.companyDomain -x -b "dc=hk,dc=companyDomain" 'uid=ldapuser2'
+ldapsearch -x -h host0001.hk.companyDomain  -s sub -b 'dc=hk,dc=companyDomain' "uid=ldapuser1"
+ldapsearch -h host0001.hk.companyDomain:389 -x -b "ou=people, dc=hk,dc=companyDomain" 'uid=ldapuser2'
+ldapsearch -v -h host0001.hk.companyDomain -D uid=ldapuser1,ou=People,dc=hk,dc=companyDomain -w ldapuser1 -b OU=People,DC=hk,DC=companyDomain
+ldapsearch -v -h host0001.hk.companyDomain -D uid=samir,ou=People,dc=hk,dc=companyDomain -w "P@ssword01" -b OU=People,DC=hk,DC=companyDomain
+
+Default port set: 389
+[root@host0001 u44035615]# netstat -nltp | grep -i slapd
+tcp        0      0 0.0.0.0:389                 0.0.0.0:*                   LISTEN      6852/slapd
+
+Sample command and output:
+[root@host0001 u44035615]# ldapsearch -h host0001.hk.companyDomain -x -b "ou=People, dc=hk,dc=companyDomain" 'uid=ldapuser2'
+# extended LDIF
+#
+# LDAPv3
+# base <ou=People, dc=hk,dc=companyDomain> with scope subtree
+# filter: uid=ldapuser2
+# requesting: ALL
+#
+
+# ldapuser2, People, hk.companyDomain
+dn: uid=ldapuser2,ou=People,dc=hk,dc=companyDomain
+uid: ldapuser2
+cn: ldapuser2
+sn: ldapuser2
+mail: ldapuser2@hk.companyDomain
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: top
+objectClass: shadowAccount
+userPassword:: dsafkdsjfdslkfjdslkfdsjflkdsfjdkfdkfsdkfdkfdskfdskfdksfdkfdfkfkdfdksfdkf
+ jVUpRcmM3MWJIelFDUzc=
+shadowLastChange: 17262
+shadowMin: 0
+shadowMax: 90
+shadowWarning: 7
+loginShell: /bin/bash
+uidNumber: 10077
+gidNumber: 10077
+homeDirectory: /home/ldapuser2
+
+# search result
+search: 2
+result: 0 Success
+
+# numResponses: 2
+# numEntries: 1
+
+Client end configuration
+Login into the server host0002.hk.companyDomain(mno.pq.rst.uv)
+
+1. Ldap Client Configuration to use LDAP Server
+[root@host0002 ~]# yum install -y openldap-clients nss-pam-ldapd
+[root@host0002 ~]# authconfig-tui
+Steps to follow for LDAP Authentication:
+1. Put '*' Mark on "Use LDAP"
+2. Put '*' Mark on "Use LDAP Authentication"
+3. Select "Next" and Enter.
+4. Enter the server field as "ldap:// host0001.hk.companyDomain/"
+5. Enter the Base DN Field as "dc=hk,dc=companyDomain"
+6. Select "OK" and Enter
+ 
+2. Test the Client Configuration.
+Search the ldap user using the below command and check the output. If you get output, then our LDAP Configurations are working properly.
+[root@host0002 ~]# getent passwd ldapuser1
+ldapuser1:x:1000:1000:ldapuser1:/home/ldapuser1:/bin/bash
+3. Mount the LDAP Users Home Directory.
+mount -t nfs host0001.hk.companyDomain:/home /home/
+Add the below entry to mount the LDAP Users home directory in the file /etc/fstab as below.
+host0001.hk.companyDomain:/home   /home   auto  defaults 0 0
+If you would like to automount the Home Directories over NFS, please refer the link Automount home directories over NFS using autofs. Configure 
+Thats all from client end. Now login using the LDAP User to ensure the authentication.
+
+Difference between export, set, setenv
+Every process, even on Windows, has a block of memory known as the environment block, this contains environment variables. When a new process is created, by default, the environment block of the parent process is copied to the child, so environment variables are a simple way of passing text data to a child process.
+export makes the variable available to subprocesses. 
+That is, if you spawn a new process from your script, the variable k won't be available to that subprocess unless you export it. Note that if you change this variable in the subprocess that change won't be visible in the parent process.
+Currently, only simple values can be passed, so items like arrays are not supported (it just exports the first element). Variable attributes, set using define, are also not exported unless the child process is a shell of the same type, i.e. another instance of bash. This also applies to exported functions, although it is possible to sometimes hack this between shells of different types (using eval). 
+In Bash (and others) there is a shell setting called allexport which means all variables are environment variables - probably a bad idea to se generally. You can supply a different environemnt block from languages like C using execve, but from the shell you need a program like env, see man env for details.
+
+Example:
+root@linux ~# x=5                <= here variable is set without export command
+root@linux ~# echo $x
+5
+root@linux ~# bash               <= subshell creation
+root@linux ~# echo $x            <= subshell doesnt know $x variable value
+root@linux ~# exit               <= exit from subshell
+exit
+root@linux ~# echo $x            <= parent shell still knows $x variable
+5
+root@linux ~# export x=5         <= specify $x variable value using export command
+root@linux ~# echo $x            <= parent shell doesn't see any difference from the first declaration
+5
+root@linux ~# bash               <= create subshell again
+root@linux ~# echo $x            <= now the subshell knows $x variable value
+5
+root@linux ~#
+
+OR
+ 
+down vote	I've created a simple script to show the difference:
+$ cat script.sh 
+echo $answer
+Let's test without export
+$ answer=42
+$ ./script.sh 
+
+$ . script.sh 
+42
+The value is known only if using the same process to execute the script (that is, the same bash instance, using source / .)
+Now, using export:
+$ export answer=42
+$ ./script.sh 
+42
+$ . script.sh 
+42
+The value is known to the subprocess.
+Thus, if you want the value of a variable to be known by subprocesses then you should use export.	 
+
+
+export and not EXPORT is used by sh and ksh shells. 
+set and setenv are the c-shell/tc-shell alternatives for setting a local variable and environment variable respectively. The set command is used for setting local variable, setenv is uesd for setting an environment variable:
+
+   The example below shows the set command usage:
+       
+ 
+#set  FILE=”output.txt”
+#echo $FILE
+output.txt
+#tcsh
+#echo $FILE
+
+#	 
+
+   The example below shows the setenv command usage:
+          
+ 
+#setenv  FILE ”output.txt”
+#echo $FILE
+output.txt
+#tcsh
+#echo $FILE
+output.txt
+#	 
+
+Que:
+How to add an admin/root user?	https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux_OpenStack_Platform/2/html/Getting_Started_Guide/ch02s03.html
+Ans:
+The sudo command offers a mechanism for providing trusted users with administrative access to a system without sharing the password of the root user. When users given access via this mechanism precede an administrative command with sudo they are prompted to enter their own password. Once authenticated, and assuming the command is permitted, the administrative command is executed as if run by the root user. 
+Follow this procedure to create a normal user account and give it sudo access. You will then be able to use the sudo command from this user account to execute administrative commands without logging in to the account of the root user. 
+⁠
+Procedure 2.2. Configuring sudo Access
+1.	Log in to the system as the root user. 
+2.	Create a normal user account using the useradd command. Replace USERNAME with the user name that you wish to create. 
+# useradd USERNAME
+3.	Set a password for the new user using the passwd command. 
+4.	# passwd USERNAME
+5.	Changing password for user USERNAME.
+6.	New password: 
+7.	Retype new password: 
+passwd: all authentication tokens updated successfully.
+8.	Run the visudo to edit the /etc/sudoers file. This file defines the policies applied by the sudo command. 
+# visudo
+9.	Find the lines in the file that grant sudo access to users in the group wheel when enabled. 
+10.	## Allows people in group wheel to run all commands
+# %wheel        ALL=(ALL)       ALL
+11.	Remove the comment character (#) at the start of the second line. This enables the configuration option. 
+12.	Save your changes and exit the editor. 
+13.	Add the user you created to the wheel group using the usermod command. 
+# usermod -aG wheel USERNAME
+14.	Test that the updated configuration allows the user you created to run commands using sudo. 
+1.	Use the su to switch to the new user account that you created. 
+# su USERNAME -
+2.	Use the groups to verify that the user is in the wheel group. 
+3.	$ groups
+USERNAME wheel
+4.	Use the sudo command to run the whoami command. As this is the first time you have run a command using sudo from this user account the banner message will be displayed. You will be also be prompted to enter the password for the user account. 
+5.	$ sudo whoami
+6.	We trust you have received the usual lecture from the local System
+7.	Administrator. It usually boils down to these three things:
+8.	
+9.	    #1) Respect the privacy of others.
+10.	    #2) Think before you type.
+11.	    #3) With great power comes great responsibility.
+12.	
+13.	[sudo] password for USERNAME:
+root
+The last line of the output is the user name returned by the whoami command. If sudo is configured correctly this value will be root. 
+You have successfully configured a user with sudo access. You can now log in to this user account and use sudo to run commands as if you were logged in to the account of the root user. 
+openssl req -new -x509 -nodes -out /etc/pki/tls/certs/host0001.pem -keyout /etc/pki/tls/certs/host0001.pem -days 365
+
+
+SAMPLE: http://programtalk.com/vs2/python/13035/RatticWeb/account/models.py/
+
+
+[root@host0001 u44035615]# vim /etc/exports
+[root@host0001 u44035615]# ls
+adm.ldif  host0001.hk.companyDomain
+[root@host0001 u44035615]# ls
+adm.ldif  host0001.hk.companyDomain
+[root@host0001 u44035615]# showmount -e
+Export list for host0001.hk.companyDomain:
+/home *
+[root@host0001 u44035615]# vim /etc/exports
+[root@host0001 u44035615]# exportfs -i -o ro,sync *:/root
+[root@host0001 u44035615]# showmount -e
+Export list for host0001.hk.companyDomain:
+/home *
+/root *
+
+https://www.digitalocean.com/community/tutorials/how-to-configure-openldap-and-perform-administrative-ldap-tasks
+
+
+
+Was not able to run ldapsearch command from root. When I was running this from root user it was giving the following error.
+[root@host0002 u44035615]# ldapsearch -h host0001.hk.companyDomain -x -b "dc=hk,dc=companyDomain" 'uid=ldapuser2'
+ldap_search: No such object
+         
+This may be because root user is not a part of Active directory. You can check that by doing the following
+ldapsearch -h host0001.hk.companyDomain -x -b "dc=hk,dc=companyDomain" 'uid=*' | grep root
+
+So what I added a new user samir to the root user group. I did this on ldap c which is host0001.hk.companyDomain. As the /home directory of the server is exported and mounted on the ldap client(host0002.hk.companyDomain), the username appeared in the /home directory. The command for this is:
+sudo useradd -ou 0 -g 0 samir
+
+Though it’s not right; I gave a permission 777 to /home/Samir on the server.
+
+Added the following lines to the /home/Samir/.bashrc on the ldap client.
+export ORACLE_BASE=/opt/oraapp/client/
+         export ORACLE_HOME=/opt/oraapp/client/12.1.0.2_x64_DBAocl028/
+         export LD_LIBRARY_PATH=/opt/oraapp/client/12.1.0.2_x64_DBAocl028/lib/
+         PATH=$ORACLE_HOME/bin:$PATH
+        . /etc/bashrc 
+
+And then started executing the E2 in the virtual environment.
+
+Add an existing user to the group
+[root@host0001 migrationtools]# usermod -a -G root samir
+[root@host0001 migrationtools]# vim /etc/group
+[root@host0001 migrationtools]# grep samir /etc/group
+root:x:0:Samir
+
+
+If you find syslog(i.e. /var/log/messages) empty and is not logging any system logs then just restart the daemon by the following command
+/etc/init.d/rsyslog restart
+
+X86, x64, x86_64, ia64:
+Every micro-processor implements an instruction set (also called instruction set architecture or ISA in short). 64-bit ISA or 64-bit processor means that the length of each instruction that the processor executes is 64 bits.
+
+X64, amd64 and x86-64 are names for the same processor type. It's often called amd64 because AMD(Advanced Micro Systems) came up with it initially (1999). All current general-public 64-bit desktops and servers have an amd64 processor. AMD later rebranded it to amd64.
+ia64 (itanium) is from intel. Itanium works fast only with 64bits and is still used in industry. Intel now uses x86_64 instructions from AMD due to its popularity in industry.
+. There is a processor type called IA-64 or Itanium. It's only found in supercomputers and a few high-end servers. i386 : "i" is Intel , andn 386 comes from Intel's 80386 chips.
+
+Here most difference is between 32bit(i386) and 64bits(x86_64 and ia64). You cannot run app for 64bit on 32bit cpu but in reverse usually yes.
+x86_64 (AMD64) cpu is most common instruction set as comes to 64bit cpu on desktop computer. It is from AMD which was few years earlier with their cpu which worked fine with x86(32-bits) instructions also.
+
+In hardware, x86_64 is a type of processor that can run both 32bit and 64bit applications just fine where ia64 runs 32bit applications SLOWER than any other CPU, as it is meant for 64bit only applications.
+
+x86-64 (also known as x64, x86_64 and AMD64[note 1]) is the 64-bit version of the x86 instruction set.
+x86-64 == x64== x86_64 ==amd64 is the 64-bit version of the x86 instruction set.
+A Graphics Processing Unit (GPU) is a special purpose processor, optimized for calculations commonly (and repeatedly) required for Computer Graphics, particularly SIMD operations.
+A Central Processing Unit (CPU) is a general purpose processor - it can in principle do any computation, but not necessarily in an optimal fashion for any given computation. One can do graphics processing on a CPU - but it likely will not produce the result anywhere nearly as fast as a properly programmed GPU.
+
+Find all 0 byte files:
+find $dir -size 0
+Note that not all implementations of find will produce output by default, so you may need to do: find $dir-size 0 –print
+For listing with ls
+find $dir -size 0 -ls
+If you would like to delete those files
+find $dir -size 0 -type f –delete
+
+Adding a user and giving it sudo privileges:
+useradd newuser1
+echo "newuser1password" | passwd --stdin newuser1
+sudo usermod -a -G root newuser1
+Add this user to /etc/sudoers to act like a sudo user
+
+
 http://michal.karzynski.pl/blog/2014/05/18/setting-up-an-asynchronous-task-queue-for-django-using-celery-redis/
 Setting up an asynchronous task queue for Django using Celery and Redis
 Celery is a powerful, production-ready asynchronous job queue, which allows you to run time-consuming Python functions in the background. A Celery powered application can respond to user requests quickly, while long-running tasks are passed onto the queue. In this article we will demonstrate how to add Celery to a Django application using Redis.
