@@ -110,3 +110,84 @@ Open the Tag List Window in Vim using :TlistOpen
 Let’s say you have opened a file as a non-root user(say samir) and have made changes. Now while saving as wq! It’s giving you error Can’t open file for writing...
 To save the file in this case simply type as below and provide the root password. That’s it
 :w !sudo tee %
+
+Que: How to jump Nth line from the current line?
+There are 3 ways to go directly to line 4000:
+
+:4000
+4000G
+4000gg
+
+Que: How to jump Nth lines down from current line?
+You can jump down 1000 lines like this:
+
+1000j
+:+1000
+
+Que:How to beautify a json string in vim?
+:%!python -m json.tool
+
+Que: How to setup ruler(horizontal and vertical line nos) and color codes in vim?
+Add the following lines to ~/.vimrc
+set ruler
+syntax on
+
+Que:To highlight all search matches, set the following option in ~/.vimrc:
+set hlsearch
+
+Que: To disable the highlighting temporarily, enter (this is a command, not an option):
+:nohlsearch
+
+Que:How to split existing file opened in vim?
+:new => opens a buffer above the current window
+:below new => opens the new window below the current one
+To put an existing buffer in a split window you use the sb# command (where # is the buffer number). Splits in VIM default to horizontal, to change this, prefix your command with vert which forces a vertical split of the next split command.
+:vert sb#
+
+The vs and vsplit commands take a filename as an argument like :vs somefile to open a file in a vertical split.
+
+To put an existing buffer in a split window you use the sb# command (where # is the buffer number). Splits in VIM default to horizontal, to change this, prefix your command with vert which forces a vertical split of the next split command.
+
+:vert sb#
+
+Where # is the buffer number
+
+Also try vsplit
+
+Que:How to install and setup ctags on Mac?
+1. brew install ctags
+
+2.
+cd ~/.vim
+git clone https://github.com/vim-scripts/taglist.vim.git
+cp -r taglist.vim/* .
+rm -rf talist.vim
+
+3.
+vim ~/.vimrc
+filetype plugin on
+
+4. Run 'ctags -R .' in the project directory. Make sure that "tags" file got generated with all the project mappings
+
+5. Add the following entry(project path containing "ctags" file) to ~/.vimrc
+set tags += "/Users/samirsahoo/Projects/batchx-tests"
+
+6. Try the following commands for switching.
+Ctrl+] - go to definition
+Ctrl+T - Jump back from the definition.
+Ctrl+W+] - Open the definition in a horizontal split
+
+Que:How to increase the width of left side panel of taglist?
+Ans:
+Go to .~/vimrc directory. # cd ~/.vimrc
+    " Vertically split taglist window width setting
+    if !exists('Tlist_WinWidth')
+        let Tlist_WinWidth = 60
+    endif
+
+Que: How to run  a command while residing in the vim editior itself?
+:!ls -l
+
+Que: How to add anything to the end of each line in a file?
+:%s/$/\*/g	=> Adds * at the end of each line
+:%s/$/,/g	=> Adds , at the end of each line
