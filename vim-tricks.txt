@@ -191,3 +191,30 @@ Que: How to run  a command while residing in the vim editior itself?
 Que: How to add anything to the end of each line in a file?
 :%s/$/\*/g	=> Adds * at the end of each line
 :%s/$/,/g	=> Adds , at the end of each line
+
+Que: How to COUNT OCCERENCE OF PATTERN e.g. post_code?
+
+Ans:
+%s/post_code//gn 
+
+Que: How to COUNT AND REPLACE/DELETE OCCERENCE OF THE FOLLOWING PATTERN?
+
+      "post_code": {
+        "code_tail": "2357",
+        "code": "89706",
+        "name": {
+          "code_type": "POSTAL",
+          "unparsed_name": "89706",
+          "name_type": "PRIMARY"
+        },
+        "postcode_type": "STANDARD"
+      },
+
+Ans:
+
+COUNT:
+%s/\"post_code\": {\(\n.*\)\{9\}//gn
+
+REPLACE with blank/DELETE:
+%s/\"post_code\": {\(\n.*\)\{9\}//g
+
