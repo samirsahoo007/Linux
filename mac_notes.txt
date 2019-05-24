@@ -1,0 +1,61 @@
+sw_vers command – Show Mac OS X operating system version.
+  
+How to convert a string to json format in sublime?
+COMMAND + CONTROL + J
+
+How to undo a job in pycharm in mac?
+Command+Shift+Z
+
+What is /private in mac?
+/tmp, /var and /etc/ directories are symlinked to /private/tmp, /private/var and /private/etc respectively. Check out why???
+Samirs-MacBook-Pro:~ samirsahoo$ ls -l / | grep ^l
+lrwxr-xr-x@  1 root  wheel    11 Dec  2  2017 etc -> private/etc
+lrwxr-xr-x@  1 root  wheel    11 Dec  2  2017 tmp -> private/tmp
+lrwxr-xr-x@  1 root  wheel    11 Dec  2  2017 var -> private/var
+
+
+
+How to check the status(running/stopped) of a process/daemon in Mac?
+sudo launchctl list | grep ssh
+
+Download a file: curl -O https://reactorx-apps.geo.apple.com/REL-0.215/nwf/reactorx-apps-0.215.3.164.nwf.zip
+
+Command + Shift + 3 => Takes the print of the whole screen and saves it on the desktop
+Command + Shift + 4 => You can select the area for which you want to take the screenshot
+Command + Shift + 6 => Screenshot of the touchbar
+
+How to increase the width of left side panel of taglist?
+Ans:
+Go to .~/vimrc directory. # cd ~/.vimrc
+    " Vertically split taglist window width setting
+    if !exists('Tlist_WinWidth')
+        let Tlist_WinWidth = 60
+    endif
+We can have more than one java version installed on our mac. We can check it as below
+$ /usr/libexec/java_home -V
+Matching Java Virtual Machines (2):
+    10.0.1, x86_64:     "Java SE 10.0.1"        /Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
+    1.8.0_172, x86_64:  "Java SE 8"     /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home
+/Library/Java/JavaVirtualMachines/jdk-10.0.1.jdk/Contents/Home
+
+We can set the default java version as below.
+# Java 10
+export JAVA_HOME=$(/usr/libexec/java_home -v 10)
+
+# Java 9
+export JAVA_HOME=$(/usr/libexec/java_home -v 9)
+
+# Java 1.8
+export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+$ export JAVA_HOME=$(/usr/libexec/java_home -v 1.8)
+
+How to fix the xcrun error like below?
+(python27) Samirs-MacBook-Pro:batchx-tests samirsahoo$ git
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Library/Developer/CommandLineTools/usr/bin/xcrun
+
+Ans: Run the command below
+$ xcode-select --install
+
+
+
