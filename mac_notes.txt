@@ -57,5 +57,9 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 Ans: Run the command below
 $ xcode-select --install
 
+How to restart docker on Mac?
+$ open -a Docker
+Go to the docker icon and restart the daemon
 
-
+Start Docker gracefully from commandline:
+open --background -a Docker
