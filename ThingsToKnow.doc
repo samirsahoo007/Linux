@@ -1,3 +1,6 @@
+How to delete first line and print rest?
+docker container ps | awk '{print $1}' | sed 1d			# Use sed to delete first line
+
 How to convert a docx file to md file?
 $ pandoc -f docx -t markdown README.docx -o README.md
 
