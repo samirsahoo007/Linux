@@ -1,3 +1,41 @@
+Replacing or substituting string : $sed 's/unix/linux/' geekfile.txt
+  
+Replacing all the occurrence of the pattern in a line : $sed 's/unix/linux/g' geekfile.txt
+
+Delete Lines:   $ sed '2d' myfile
+
+What about deleting a range of lines?: $ sed '2,3d' myfile
+$ sed '3,$d' myfile                     delete to the end. Here we delete from the third line to the end of the file.
+
+Print lines between PAT1 and PAT2 - include PAT1 and PAT2: sed -n '/PAT1/,/PAT2/p' FILE
+
+
+sed -n 'Np' FILE.txt
+Example:
+To print 1st line,   $ sed -n '1p' sedtest.txt
+
+This is line #1While, to print last line, $ sed -n '$p' sedtest.txt
+
+To print 3rd line to 8th line.
+
+$ sed -n '3,8p' sedtest.txt
+This is line #3
+This is line #4
+This is line #5
+This is line #6
+This is line #7
+This is line #8
+
+Similarly, in order to print lines starting from 5th up to last line, you would run-
+
+$ sed -n '5,$p' sedtest.txt
+This is line #5
+This is line #6
+This is line #7
+This is line #8
+This is line #9
+This is line #10
+
 How to delete first line and print rest?
 docker container ps | awk '{print $1}' | sed 1d			# Use sed to delete first line
 
