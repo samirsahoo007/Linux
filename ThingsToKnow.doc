@@ -1,3 +1,6 @@
+How to delete everything except a particular file(say stock.py)
+	find ./ ! -name  stock.py | xargs rm -rf
+
 Replacing or substituting string : $sed 's/unix/linux/' geekfile.txt
   
 Replacing all the occurrence of the pattern in a line : $sed 's/unix/linux/g' geekfile.txt
