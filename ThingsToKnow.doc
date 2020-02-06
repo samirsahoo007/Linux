@@ -1,6 +1,9 @@
 How to delete everything except a particular file(say stock.py)
 	find ./ ! -name  stock.py | xargs rm -rf
 
+Delete trailing whitespace from all files in current directory tree
+	find . -type f -print0 | xargs -0 sed -i '' -E "s/[[:space:]]*$//"
+
 Replacing or substituting string : $sed 's/unix/linux/' geekfile.txt
   
 Replacing all the occurrence of the pattern in a line : $sed 's/unix/linux/g' geekfile.txt
