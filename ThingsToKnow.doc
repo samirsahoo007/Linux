@@ -42,6 +42,10 @@ This is line #8
 This is line #9
 This is line #10
 
+history -d <line number>	# delete a particular command from history
+history -c			# Clears the entire history
+# Or just remove the selected lines from .bash_history
+
 How to delete first line and print rest?
 docker container ps | awk '{print $1}' | sed 1d			# Use sed to delete first line
 
