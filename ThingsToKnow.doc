@@ -1,3 +1,6 @@
+Find newly added files to git repo:
+for f in $(find ./ -type f); do git log --format=%aD $f | tail -1;echo $f; done
+
 curl https://xyyyz.com/		# Perform an HTTP GET request
 curl -i https://xyyyz.com/	# By default the response headers are hidden in the output of curl. To show them, use the i option:
 curl -I https://xyyyz.com/	# Using the I option, you can get only the headers, and not the response body:
