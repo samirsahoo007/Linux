@@ -58,24 +58,19 @@ Ans: Run the command below
 $ xcode-select --install
 
 # Install Command Line Tools
-
 	xcode-select —install
 
 # Check again to see if Xcode Command Line Tools is installed. 
-
 Samirs-MacBook-Pro:jenkins samirsahoo$ xcode-select -p
 /Library/Developer/CommandLineTools
 
 # Install Homebrew
-
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Install package
-
 brew install wget
 
 # Remove package
-
 brew rm wget
 
 How to restart docker on Mac?
