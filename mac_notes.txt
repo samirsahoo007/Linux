@@ -18,7 +18,7 @@ lrwxr-xr-x@  1 root  wheel    11 Dec  2  2017 var -> private/var
 How to check the status(running/stopped) of a process/daemon in Mac?
 sudo launchctl list | grep ssh
 
-Download a file: curl -O https://reactorx-apps.geo.apple.com/REL-0.215/nwf/reactorx-apps-0.215.3.164.nwf.zip
+Download a file: curl -O https://xxx-yyy.mno.com/rel-012/nwf/xxx-yyy-0.512.3.121.nwf.zip
 
 Command + Shift + 3 => Takes the print of the whole screen and saves it on the desktop
 Command + Shift + 4 => You can select the area for which you want to take the screenshot
@@ -56,6 +56,27 @@ xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools
 
 Ans: Run the command below
 $ xcode-select --install
+
+# Install Command Line Tools
+
+	xcode-select —install
+
+# Check again to see if Xcode Command Line Tools is installed. 
+
+Samirs-MacBook-Pro:jenkins samirsahoo$ xcode-select -p
+/Library/Developer/CommandLineTools
+
+# Install Homebrew
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+# Install package
+
+brew install wget
+
+# Remove package
+
+brew rm wget
 
 How to restart docker on Mac?
 $ open -a Docker
