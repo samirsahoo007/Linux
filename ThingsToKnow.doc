@@ -64,6 +64,15 @@ On your browser got to Network->Copy->Copy as cURL
 
 curl 'https://github.com/curl/curl' -H 'Connection: keep-alive' -H 'Pragma: no-cache' -H 'Cache-Control: no-cache' -H 'Upgrade-Insecure-Requests: 1' -H 'DNT: 1' -H 'User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36' -H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8' -H 'Referer: https://www.google.it/' -H 'Accept-Encoding: gzip, deflate, br' -H 'Accept-Language: en-US,en;q=0.9,it;q=0.8' -H 'Cookie: _octo=GH1.1.933116459.1507545550; _ga=GA1.2.643383860.1507545550; tz=Europe%2FRome; user_session=XXXXX; __Host-user_session_same_site=YYYYYY; dotcom_user=xyyyz; logged_in=yes; has_recent_activity=1; _gh_sess=ZZZZZZ' --compressed
 
+* Customize/Change Bash Prompt In Linux
+** To get a tty like MyTestPrompt> add the following line to ~/.bash_profile or ~/.bashrc
+PS1="MyTestPrompt> "
+
+** Run the source command like below
+source ~/.bashrc
+
+Another example:
+e.g. export PS1="\u\H $”
 ---------------------------------------------------------------------------------
 How to delete everything except a particular file(say stock.py)
 	find ./ ! -name  stock.py | xargs rm -rf
