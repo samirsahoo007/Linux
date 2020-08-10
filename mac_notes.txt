@@ -79,3 +79,32 @@ Go to the docker icon and restart the daemon
 
 Start Docker gracefully from commandline:
 open --background -a Docker
+
+
+Que: How to resolve the following error:
+FileNotFoundError: [Errno 2] No such file or directory: '/etc/pki/tls/cert.pem'
+
+Ans:
+Configure OpenSSL
+====================
+Generate a self-signed certificate (OpenSSL)
+
+Using OpenSSL we will generate a self-signed certificate.
+If you are using this on a production server you are probably likely to want a key from Trusted Certificate Authority, but if you are just using this on a personal site or for testing purposes a self-signed certificate is fine. To create the key you will need to be root so you can either su to root or use sudo in front of the commands
+
+# Generate private key default is 1024 better is 2048
+openssl genrsa -out ca.key 1024
+
+# Generate CSR
+openssl req -new -key ca.key -out ca.csr
+
+# Generate Self Signed Key
+openssl x509 -req -days 365 -in ca.csr -signkey ca.key -out ca.crt
+
+# Copy the files to the correct locations
+cp ca.crt /etc/pki/tls/certs
+cp ca.key /etc/pki/tls/private/ca.key
+cp ca.csr /etc/pki/tls/private/ca.csr
+
+Command used for creating .pem file for webmin
+cat ca.crt ca.key | sudo tee ca.pem > /dev/null
