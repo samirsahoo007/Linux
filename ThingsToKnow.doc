@@ -17,6 +17,9 @@ if [ ! -d "$DOWNLOAD_DIR" ]
 # Integer equal comparison
 if [ $marks -ge 80 ]		# Similarly -eq, -le
 
+# Set the python script output to bash environment
+export OUTPUT=$(python3 my_script_outpu.py)
+echo $OUTPUT
 
 Find newly added files to git repo:
 for f in $(find ./ -type f); do git log --format=%aD $f | tail -1;echo $f; done
