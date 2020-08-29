@@ -1,3 +1,23 @@
+# string equality comparison (and make sure to add spaces between the symbols)
+if [[ "$s1" == "$s2" ]]
+then
+    ...
+    ...
+fi
+
+# string does NOT equal comparison
+if [[ "$s1" != "$s2" ]]
+
+# For the a contains b, use:
+if [[ $s1 == *"$s2"* ]]
+
+# Directory exists
+if [ ! -d "$DOWNLOAD_DIR" ]
+
+# Integer equal comparison
+if [ $marks -ge 80 ]		# Similarly -eq, -le
+
+
 Find newly added files to git repo:
 for f in $(find ./ -type f); do git log --format=%aD $f | tail -1;echo $f; done
 
