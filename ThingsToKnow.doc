@@ -17,6 +17,21 @@ if [ ! -d "$DOWNLOAD_DIR" ]
 # Integer equal comparison
 if [ $marks -ge 80 ]		# Similarly -eq, -le
 
+
+
+# Functions in bash
+#!/bin/bash
+# Setting a return status for a function
+print_something () {
+    echo Hello $1
+    return 5
+}
+print_something Mars
+print_something Jupiter
+echo The previous function has a return value of $?
+
+
+
 # Set the python script output to bash environment
 export OUTPUT=$(python3 my_script_outpu.py)
 echo $OUTPUT
