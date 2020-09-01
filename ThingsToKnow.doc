@@ -114,6 +114,19 @@ source ~/.bashrc
 Another example:
 e.g. export PS1="\u\H $”
 ---------------------------------------------------------------------------------
+To create 1MB file (1024kb), enter:
+$ dd if=/dev/zero of=test.img bs=1024 count=0 seek=1024
+
+You will get an empty files (also known as "sparse file") of arbitrary size using above syntax. To create 10MB file , enter:
+$ dd if=/dev/zero of=test.img bs=1024 count=0 seek=$[1024*10]
+
+To create 100MB file , enter:
+$ dd if=/dev/zero of=test.img bs=1024 count=0 seek=$[1024*100]
+$ ls -lh test.img
+
+To create 1GB, file:
+$ dd if=/dev/zero of=1g.img bs=1 count=0 seek=1G
+
 How to delete everything except a particular file(say stock.py)
 	find ./ ! -name  stock.py | xargs rm -rf
 
