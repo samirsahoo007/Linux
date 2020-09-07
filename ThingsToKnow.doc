@@ -1,4 +1,12 @@
-#How to make your system passwordless
+# Getting Help is Important! How to quickly look things up???
+Let's say I need to find and replace some text in a file. I know I can do this with the sed command, but have forgotten the syntax.
+All I need to do is run tldr sed
+e.g.
+$ tldr sed
+$ tldr docker
+If tldr is not present install it with 'brew install tldr' (in macOS)
+
+# How to make your system passwordless
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
 $ chmod 0600 ~/.ssh/authorized_keys
