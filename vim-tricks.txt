@@ -65,6 +65,7 @@ Omit g to display the number of lines where the pattern matches:
 
 :%s/^$\n//g    => removes all blank lines
 :%s/\/\/.*//g  => Remove all single line comments in java(e.g.//Constructor)
+:%s/,/\r/g     => replace , with new line; \n doesn't work here
 
 :%s/foo/bar/g 
 Find each occurrence of 'foo' (in all lines), and replace it with 'bar'. 
