@@ -1,3 +1,20 @@
+$ screen -S <SCREEN_NAME>			# Start a session
+Ctrl+A Ctrl+D					# Detach from session
+$ screen -ls					# list sessions
+$ screen -r <SCREEN_NAME>			# Reattach a session
+
+$ screen -ls
+# How to delete a detached session which you want to use no more
+e.g.
+There is a screen on:
+23536.pts-0.wdzee       (10/04/2012 08:40:45 AM)        (Detached)
+1 Socket in /var/run/screen/S-root.
+Kill screen session:
+
+$ screen -S 23536 -X quit
+
+Ctrl-A and x					# Locks a screen. You can set a key. Later unlock it using your linux password
+
 # Find (and kill) process locking port 3000 on Mac
 sudo lsof -i:3000 
 kill -9 <PID>
