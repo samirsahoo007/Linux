@@ -15,6 +15,13 @@ $ screen -S 23536 -X quit
 
 Ctrl-A and x					# Locks a screen. You can set a key. Later unlock it using your linux password
 
+# How to list the classes/contents in a jar file
+jar -tf myjar.jar
+
+# For instance if you have a class named mypkg.HelloWorld in a jar myjar.jar then run it like
+javap -classpath myjar.jar mypkg.HelloWorld
+
+
 # Find (and kill) process locking port 3000 on Mac
 sudo lsof -i:3000 
 kill -9 <PID>
