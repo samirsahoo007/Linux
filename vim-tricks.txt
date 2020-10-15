@@ -84,20 +84,14 @@ Change each 'foo' (case sensitive due to the I flag) to 'bar'; ask for confirmat
 This may be wanted after using :set ignorecase to make searches case insensitive. 
 
 How to configure ctags for vim?
-[root@hkl105712 E2]# yum search ctags
-ctags-etags.x86_64 : Exuberant Ctags for emacs tag format
-ctags.x86_64 : A C programming language indexing and/or cross-reference tool
+[root@hkl105712 E2]# yum install ctags			OR 				# brew install ctags (On mac)
 
-  Name and summary matches only, use "search all" for everything.
-[root@hkl105712 E2]# yum install ctags
-
-
-Download it from from vim.org (wget -O taglist.zip http://www.vim.org/scripts/download_script.php?src_id=7701)
-$ mkdir ~/.vim # if the directory does not exist already
-
+$ cd /usr/src
+$ wget -O taglist.zip http://www.vim.org/scripts/download_script.php?src_id=7701)	# Download it from from vim.org
+$ mkdir ~/.vim 										# if the directory does not exist already
 $ cd ~/.vim
-
 $ unzip /usr/src/taglist.zip
+
 Add the following line to the ~/.vimrc to enable the plugin for Vim editor.
 $ vim ~/.vimrc
 filetype plugin on
@@ -107,7 +101,7 @@ Open the Tag List Window in Vim using :TlistOpen
 :TlistOpen
 
 
-Let’s say you have opened a file as a non-root user(say samir) and have made changes. Now while saving as wq! It’s giving you error Can’t open file for writing...
+Let's say you have opened a file as a non-root user(say samir) and have made changes. Now while saving as wq! It’s giving you error Can’t open file for writing...
 To save the file in this case simply type as below and provide the root password. That’s it
 :w !sudo tee %
 
