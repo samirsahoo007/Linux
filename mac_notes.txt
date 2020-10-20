@@ -1,3 +1,7 @@
+sudo apachectl start		# Start service
+sudo apachectl configtest	# To run a configuration file syntax test
+
+
 sw_vers command – Show Mac OS X operating system version.
   
 How to convert a string to json format in sublime?
