@@ -1,3 +1,12 @@
+# Install and configure Apache
+macOS 10.15 Catalina comes with Apache pre-installed. However, instead of using the delivered version, we're going to install Apache via Homebrew and then configure it to run on port 80.
+
+$ sudo apachectl stopsudo launchctl unload -w /System/Library/LaunchDaemons/org.apache.httpd.plist 2>/dev/null
+$ brew install httpd
+$ brew services start httpd
+
+Now you should be able to point your browser at http://localhost:8080 and see a simple header that says It works!
+
 sudo apachectl start		# Start service
 sudo apachectl configtest	# To run a configuration file syntax test
 apachectl -V			# Check details
