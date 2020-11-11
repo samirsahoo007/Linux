@@ -9,6 +9,7 @@ $curl --insecure https://www.cyberciti.biz/files/sticker/sticker_book.pdf -o /tm
 
 Run bash script straight from github without downloading it
 $ curl --insecure -Ls https://github.com/krypted/resetsoftwareupdate/raw/master/resetsoftwareupdate.sh | bash
+$ curl http://foo.com/script.sh | bash -s arg1 arg2
 
 
 $ screen -S <SCREEN_NAME>			# Start a session
