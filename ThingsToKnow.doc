@@ -1,3 +1,16 @@
+Use curl command with --insecure option to skip certificate check and avoid "CApath" error
+$ curl https://www.cyberciti.biz/files/sticker/sticker_book.pdf -o /tmp/sticker.pdf
+curl: (77) error setting certificate verify locations:
+  CAfile: $HOME/.certs/apple_cacerts.pem
+  CApath: none
+  
+SOLUTION:
+$curl --insecure https://www.cyberciti.biz/files/sticker/sticker_book.pdf -o /tmp/sticker.pdf
+
+Run bash script straight from github without downloading it
+$ curl --insecure -Ls https://github.com/krypted/resetsoftwareupdate/raw/master/resetsoftwareupdate.sh | bash
+
+
 $ screen -S <SCREEN_NAME>			# Start a session
 Ctrl+A Ctrl+D					# Detach from session
 $ screen -ls					# list sessions
