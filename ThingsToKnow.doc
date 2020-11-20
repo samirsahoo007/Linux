@@ -15,7 +15,7 @@ $ curl http://foo.com/script.sh | bash -s arg1 arg2
 $ screen -S <SCREEN_NAME>			# Start a session
 Ctrl+A Ctrl+D					# Detach from session
 $ screen -ls					# list sessions
-$ screen -r <SCREEN_NAME>			# Reattach a session
+$ screen -x <SCREEN_NAME>			# Reattach a session
 
 $ screen -ls
 # How to delete a detached session which you want to use no more
