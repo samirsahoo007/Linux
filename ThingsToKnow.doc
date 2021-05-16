@@ -60,6 +60,14 @@ $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
 $ chmod 0600 ~/.ssh/authorized_keys
 
+# Verify passwordless ssh
+ssh username@localhost
+
+# find users
+e.g. 
+$ users
+samirsahoo
+
 # How to enable password again
 $ vim ~/.ssh/authorized_keys
 and then remove the entry
