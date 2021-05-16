@@ -74,8 +74,11 @@ Remove SSH with the following command:
     
 Install SSH again with:
     $ sudo apt-get install openssh-client openssh-server
+    
 
-
+# How to start or stop or restart ssh service on MacOS
+$ sudo launchctl stop com.openssh.sshd
+$ sudo launchctl start com.openssh.sshd
 
 # string equality comparison (and make sure to add spaces between the symbols)
 if [[ "$s1" == "$s2" ]]
