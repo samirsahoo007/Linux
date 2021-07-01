@@ -75,6 +75,10 @@ $ tldr sed
 $ tldr docker
 If tldr is not present install it with 'brew install tldr' (in macOS)
 
+# Creating Private Key and Public Key (Linux)
+ssh-keygen -t rsa				(and follow the instructions)
+* Private and public keys should be generated in ~/.ssh/id_rsa and ~/..ssh/id_rsa.pub respectively.
+
 # How to make your system passwordless
 $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa 
 $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys 
