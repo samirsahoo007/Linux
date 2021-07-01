@@ -1,3 +1,23 @@
+Q. SSH configuration: 
+   How to override the default username?
+   By default it uses username as samirsahoo; but I want to use username sameer_sahoo
+
+Ans.
+Create a file called config inside ~/.ssh. Inside the file you can add:
+
+Host *
+    User sameer_sahoo
+
+Or add
+
+Host example
+    HostName example.net
+    User sameer_sahoo
+    
+The second example will set a username and is hostname specific, while the first example sets a username only. 
+And when you use the second one you don't need to use ssh example.net; ssh example will be enough.
+
+
 Use curl command with --insecure option to skip certificate check and avoid "CApath" error
 $ curl https://www.cyberciti.biz/files/sticker/sticker_book.pdf -o /tmp/sticker.pdf
 curl: (77) error setting certificate verify locations:
