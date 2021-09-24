@@ -51,6 +51,9 @@ to
     (1, 19, 1),
     (1, 20, 1),
 
+How to delete all lines that do NOT contain a certain word(e.g. price) in Vim?
+%!grep "price"
+
 :%s/\nC\(\/C++\)\? Program //g =>
 Convert lines like 
 C Program to count number of lines in a file
