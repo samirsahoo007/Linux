@@ -69,6 +69,9 @@ Omit g to display the number of lines where the pattern matches:
 :%s/^$\n//g    => removes all blank lines
 :%s/\/\/.*//g  => Remove all single line comments in java(e.g.//Constructor)
 :%s/,/\r/g     => replace , with new line; \n doesn't work here
+:%s/^/#/       => This adds # at the beginning of every line
+:%s/$/,/       => This adds , at the end of every line
+
 
 :%s/foo/bar/g 
 Find each occurrence of 'foo' (in all lines), and replace it with 'bar'. 
@@ -86,6 +89,9 @@ This may be wanted after using :set noignorecase to make searches case sensitive
 Change each 'foo' (case sensitive due to the I flag) to 'bar'; ask for confirmation. 
 :%s/foo\C/bar/gc is the same because \C makes the search case sensitive. 
 This may be wanted after using :set ignorecase to make searches case insensitive. 
+
+:g/profile/d    => delete all lines containing "profile" (remove the /d to show the lines that the command will delete):
+:g/^\s*$/d      => deleting all lines that are empty or that contain only whitespace
 
 How to configure ctags for vim?
 [root@hkl105712 E2]# yum install ctags			OR 				# brew install ctags (On mac)
