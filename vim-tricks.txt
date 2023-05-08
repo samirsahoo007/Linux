@@ -91,6 +91,8 @@ Change each 'foo' (case sensitive due to the I flag) to 'bar'; ask for confirmat
 This may be wanted after using :set ignorecase to make searches case insensitive. 
 :s/\(\S\+\)/"\1"/g => enclose all words in a line in double quotes
 
+:%y+                => copy all lines to clipboard
+
 :g/profile/d    => delete all lines containing "profile" (remove the /d to show the lines that the command will delete):
 :g/^\s*$/d      => deleting all lines that are empty or that contain only whitespace
 
